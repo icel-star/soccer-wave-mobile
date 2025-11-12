@@ -62,3 +62,22 @@ Contoh: mengubah warna atau teks, lalu hasilnya langsung muncul.
 Contoh: jika mengubah variabel global atau inisialisasi awal, kita gunakan hot restart agar perubahan terdeteksi.
 => Perbedaan utama → Hot reload prosesnya cepat dan mempertahankan state, sedangkan hot restart lebih lambat dan mengulang dari awal aplikasi.
 
+TUGAS 2
+
+1. Jelaskan perbedaan antara Navigator.push() dan Navigator.pushReplacement() pada Flutter. Dalam kasus apa sebaiknya masing-masing digunakan pada aplikasi Football Shop kamu?
+=> Navigator.push() digunakan untuk menambahkan halaman baru di atas halaman saat ini, sehingga ketika pengguna menekan tombol back, mereka akan kembali ke halaman sebelumnya. Ini seperti menambahkan lembaran baru di atas tumpukan yang sudah ada. Sedangkan Navigator.pushReplacement() menggantikan halaman saat ini dengan halaman baru, sehingga halaman sebelumnya dihapus dari tumpukan dan tidak bisa dikembalikan dengan tombol back.
+
+Dalam aplikasi Football Shop, saya akan menggunakan Navigator.push() untuk situasi seperti navigasi dari halaman beranda ke detail produk dimana pengguna perlu memiliki opsi untuk kembali ke halaman sebelumnya. Sementara Navigator.pushReplacement() akan saya terapkan setelah proses login berhasil, dimana halaman login digantikan dengan halaman beranda sehingga pengguna tidak bisa kembali ke halaman login dengan tombol back.
+
+2. Bagaimana kamu memanfaatkan hierarchy widget seperti Scaffold, AppBar, dan Drawer untuk membangun struktur halaman yang konsisten di seluruh aplikasi?
+=> Saya memanfaatkan hierarchy widget seperti Scaffold, AppBar, dan Drawer dengan membuat template halaman yang konsisten di seluruh aplikasi Football Shop. Scaffold berfungsi sebagai kerangka dasar setiap halaman yang menyediakan visual yang seragam. AppBar saya gunakan untuk menampilkan judul halaman yang konsisten dengan warna tema toko. Drawer saya implementasikan sebagai menu navigasi utama yang berisi link ke berbagai section seperti beranda, create product, dll. sehingga pengguna dapat dengan mudah berpindah halaman dari mana saja dalam aplikasi. Dengan pendekatan ini, setiap halaman dalam aplikasi memiliki tampilan dan pola navigasi yang serupa.
+
+3. Dalam konteks desain antarmuka, apa kelebihan menggunakan layout widget seperti Padding, SingleChildScrollView, dan ListView saat menampilkan elemen-elemen form? Berikan contoh penggunaannya dari aplikasi kamu.
+=> Dalam menampilkan elemen-elemen form, penggunaan layout widget seperti Padding, SingleChildScrollView, dan ListView memberikan keuntungan signifikan. Padding membantu menciptakan ruang kosong yang cukup di sekitar elemen form. SingleChildScrollView sangat berguna ketika form memiliki banyak field yang tidak muat dalam satu layar, memungkinkan pengguna melakukan scroll. Sedangkan ListView ideal untuk menampilkan daftar field form.
+
+Dalam aplikasi Football Shop, ListView saya terapkan pada drawer. Saya menerapkan Padding pada setiap field form pembuatan produk. SingleChildScrollView saya gunakan pada halaman pembuatan produk juga.
+
+4. Bagaimana kamu menyesuaikan warna tema agar aplikasi Football Shop memiliki identitas visual yang konsisten dengan brand toko?
+=> Untuk menciptakan identitas visual yang konsisten dengan brand Football Shop, pertama, saya memilih warna utama yang merepresentasikan diri saya atau shop saya, yyaitu warna pink. Kemudian saya membuat palet warna yang terdiri dari warna primary, secondary,dll. untuk background dan text. Warna-warna ini saya terapkan secara konsisten di seluruh komponen aplikasi seperti drawer, button, card, dll.
+
+Dengan menerapkan tema warna yang konsisten di seluruh aplikasi, saya mengharapkan dapat menciptakan pengalaman yang baik dan mudah dikenali oleh pelanggan Football Shop.
