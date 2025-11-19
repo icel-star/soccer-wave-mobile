@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:soccer_wave/screens/menu.dart';
 import 'package:soccer_wave/screens/productlist_form.dart';
+import 'package:soccer_wave/screens/product_entry_list.dart';
 
 class LeftDrawer extends StatelessWidget {
   const LeftDrawer({super.key});
@@ -26,8 +27,7 @@ class LeftDrawer extends StatelessWidget {
                   ),
                 ),
                 Padding(padding: EdgeInsets.all(10)),
-                Text("Hop on the soccer wave!",
-                    ),
+                Text("Hop on the soccer wave!"),
               ],
             ),
           ),
@@ -37,10 +37,9 @@ class LeftDrawer extends StatelessWidget {
             // Bagian redirection ke MyHomePage
             onTap: () {
               Navigator.pushReplacement(
-                  context,
-                  MaterialPageRoute(
-                    builder: (context) => MyHomePage(),
-                  ));
+                context,
+                MaterialPageRoute(builder: (context) => MyHomePage()),
+              );
             },
           ),
           ListTile(
@@ -49,10 +48,22 @@ class LeftDrawer extends StatelessWidget {
             // Bagian redirection ke ProductFormPage
             onTap: () {
               Navigator.pushReplacement(
-                  context,
-                  MaterialPageRoute(
-                    builder: (context) => ProductFormPage(),
-                  ));
+                context,
+                MaterialPageRoute(builder: (context) => ProductFormPage()),
+              );
+            },
+          ),
+          ListTile(
+            leading: const Icon(Icons.add_reaction_rounded),
+            title: const Text('News List'),
+            onTap: () {
+              // Route to news list page
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => const ProductEntryListPage(),
+                ),
+              );
             },
           ),
         ],
