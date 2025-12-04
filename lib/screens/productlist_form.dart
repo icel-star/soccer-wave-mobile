@@ -18,11 +18,11 @@ class _ProductFormPageState extends State<ProductFormPage> {
   String _name = "";
   String _price = "";
   String _brand = "";
-  String _category = "Update"; // default
+  String _category = "Jersey"; //default value
   String _rating = "";
   String _stock = "";
   String _thumbnail = "";
-  bool _isFeatured = false; // default
+  bool _isFeatured = false;
   String _description = "";
 
   final List<String> _categories = ['Jersey', 'Shoes', 'Ball', 'Accessory'];
@@ -43,7 +43,7 @@ class _ProductFormPageState extends State<ProductFormPage> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              // === Title ===
+              // === Name ===
               Padding(
                 padding: const EdgeInsets.all(8.0),
                 child: TextFormField(
@@ -87,6 +87,13 @@ class _ProductFormPageState extends State<ProductFormPage> {
                   validator: (String? value) {
                     if (value == null || value.isEmpty) {
                       return "Price cannot be empty!";
+                    }
+                    final parsed = int.tryParse(value);
+                    if (parsed == null) {
+                      return "Price must be an integer!";
+                    }
+                    if (parsed < 0) {
+                      return "Price cannot be negative!";
                     }
                     return null;
                   },
@@ -137,6 +144,45 @@ class _ProductFormPageState extends State<ProductFormPage> {
                   validator: (String? value) {
                     if (value == null || value.isEmpty) {
                       return "Rating cannot be empty!";
+                    }
+                    final parsed = double.tryParse(value);
+                    if (parsed == null) {
+                      return "Rating must be a number!";
+                    }
+                    if (parsed < 0.0 || parsed > 5.0) {
+                      return "Rating must be between 0.0 and 5.0!";
+                    }
+                    return null;
+                  },
+                ),
+              ),
+
+              // === Stock ===
+              Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: TextFormField(
+                  decoration: InputDecoration(
+                    hintText: "Stock",
+                    labelText: "Stock",
+                    border: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(5.0),
+                    ),
+                  ),
+                  onChanged: (String? value) {
+                    setState(() {
+                      _stock = value!;
+                    });
+                  },
+                  validator: (String? value) {
+                    if (value == null || value.isEmpty) {
+                      return "Stock cannot be empty!";
+                    }
+                    final parsed = int.tryParse(value);
+                    if (parsed == null) {
+                      return "Stock must be an integer!";
+                    }
+                    if (parsed < 0) {
+                      return "Stock cannot be negative!";
                     }
                     return null;
                   },
@@ -189,20 +235,6 @@ class _ProductFormPageState extends State<ProductFormPage> {
                 ),
               ),
 
-              // === Is Featured ===
-              Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: SwitchListTile(
-                  title: const Text("Tandai sebagai Produk Unggulan"),
-                  value: _isFeatured,
-                  onChanged: (bool value) {
-                    setState(() {
-                      _isFeatured = value;
-                    });
-                  },
-                ),
-              ),
-
               // === Description ===
               Padding(
                 padding: const EdgeInsets.all(8.0),
@@ -229,6 +261,20 @@ class _ProductFormPageState extends State<ProductFormPage> {
                 ),
               ),
 
+              // === Is Featured ===
+              Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: SwitchListTile(
+                  title: const Text("Tandai sebagai Produk Unggulan"),
+                  value: _isFeatured,
+                  onChanged: (bool value) {
+                    setState(() {
+                      _isFeatured = value;
+                    });
+                  },
+                ),
+              ),
+
               // === Tombol Simpan ===
               Align(
                 alignment: Alignment.bottomCenter,
@@ -236,7 +282,7 @@ class _ProductFormPageState extends State<ProductFormPage> {
                   padding: const EdgeInsets.all(8.0),
                   child: ElevatedButton(
                     style: ButtonStyle(
-                      backgroundColor: MaterialStateProperty.all(Colors.indigo),
+                      backgroundColor: MaterialStateProperty.all(Color.fromARGB(255, 255, 138, 220)),
                     ),
                     onPressed: () async {
                       if (_formKey.currentState!.validate()) {
@@ -257,11 +303,12 @@ class _ProductFormPageState extends State<ProductFormPage> {
                             "description": _description,
                           }),
                         );
+                        
                         if (context.mounted) {
                           if (response['status'] == 'success') {
                             ScaffoldMessenger.of(context).showSnackBar(
                               const SnackBar(
-                                content: Text("News successfully saved!"),
+                                content: Text("Product successfully saved!"),
                               ),
                             );
                             Navigator.pushReplacement(

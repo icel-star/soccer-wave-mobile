@@ -25,27 +25,28 @@ class ItemCard extends StatelessWidget {
       child: InkWell(
         // Aksi ketika kartu ditekan.
         onTap: () async {
-          // Menampilkan pesan SnackBar saat kartu ditekan.
-          ScaffoldMessenger.of(context)
-            ..hideCurrentSnackBar()
-            ..showSnackBar(
-              SnackBar(
-                content: Text("Kamu telah menekan tombol ${item.name}!"),
-              ),
-            );
           if (item.name == "Create Product") {
             Navigator.pushReplacement(
               context,
               MaterialPageRoute(builder: (context) => ProductFormPage()),
             );
-          } else if (item.name == "See Football News") {
+          } else if (item.name == "All Products") {
             Navigator.push(
               context,
               MaterialPageRoute(
                 builder: (context) => const ProductEntryListPage(),
               ),
             );
-          } else if (item.name == "Logout") {
+          } else if (item.name == "My Products") {
+            Navigator.push(
+              context,
+              MaterialPageRoute(
+                builder: (context) => ProductEntryListPage(myProducts: true),
+              ),
+            );
+          } 
+          
+          else if (item.name == "Logout") {
             // To connect Android emulator with Django on localhost, use URL http://10.0.2.2/
             // If you using chrome,  use URL http://localhost:8000
 

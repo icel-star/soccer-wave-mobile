@@ -3,6 +3,7 @@ import 'package:soccer_wave/screens/register.dart';
 import 'package:flutter/material.dart';
 import 'package:pbp_django_auth/pbp_django_auth.dart';
 import 'package:provider/provider.dart';
+import 'package:soccer_wave/main.dart';
 
 void main() {
   runApp(const LoginApp());
@@ -18,8 +19,8 @@ class LoginApp extends StatelessWidget {
       theme: ThemeData(
         useMaterial3: true,
         colorScheme: ColorScheme.fromSwatch(
-          primarySwatch: Colors.blue,
-        ).copyWith(secondary: Colors.blueAccent[400]),
+          primarySwatch: pinkSwatch,
+        ).copyWith(secondary: const Color.fromARGB(255, 255, 176, 204)),
       ),
       home: const LoginPage(),
     );
@@ -148,7 +149,7 @@ class _LoginPageState extends State<LoginPage> {
                     style: ElevatedButton.styleFrom(
                       foregroundColor: Colors.white,
                       minimumSize: Size(double.infinity, 50),
-                      backgroundColor: Theme.of(context).colorScheme.primary,
+                      backgroundColor: Theme.of(context).colorScheme.secondary,
                       padding: const EdgeInsets.symmetric(vertical: 16.0),
                     ),
                     child: const Text('Login'),
@@ -166,7 +167,7 @@ class _LoginPageState extends State<LoginPage> {
                     child: Text(
                       'Don\'t have an account? Register',
                       style: TextStyle(
-                        color: Theme.of(context).colorScheme.primary,
+                        color: Theme.of(context).colorScheme.secondary,
                         fontSize: 16.0,
                       ),
                     ),

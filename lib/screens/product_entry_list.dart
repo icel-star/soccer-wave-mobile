@@ -7,18 +7,20 @@ import 'package:provider/provider.dart';
 import 'package:pbp_django_auth/pbp_django_auth.dart';
 
 class ProductEntryListPage extends StatefulWidget {
-  const ProductEntryListPage({super.key});
+  final bool myProducts;
+  const ProductEntryListPage({super.key, this.myProducts = false});
 
   @override
   State<ProductEntryListPage> createState() => _ProductEntryListPageState();
 }
 
 class _ProductEntryListPageState extends State<ProductEntryListPage> {
-  Future<List<ProductsEntry>> fetchProduct(CookieRequest request) async {
+  Future<List<ProductsEntry>> fetchProduct(CookieRequest request, {bool myOnly = false}) async {
     // To connect Android emulator with Django on localhost, use URL http://10.0.2.2/
     // If you using chrome,  use URL http://localhost:8000
 
-    final response = await request.get('http://localhost:8000/json/');
+    final url = myOnly ? 'http://localhost:8000/json/?filter=my' : 'http://localhost:8000/json/';
+    final response = await request.get(url);
 
     // Decode response to json format
     var data = response;
@@ -40,7 +42,7 @@ class _ProductEntryListPageState extends State<ProductEntryListPage> {
       appBar: AppBar(title: const Text('Product Entry List')),
       drawer: const LeftDrawer(),
       body: FutureBuilder(
-        future: fetchProduct(request),
+        future: fetchProduct(request, myOnly: widget.myProducts),
         builder: (context, AsyncSnapshot snapshot) {
           if (snapshot.data == null) {
             return const Center(child: CircularProgressIndicator());
@@ -61,7 +63,7 @@ class _ProductEntryListPageState extends State<ProductEntryListPage> {
                 itemBuilder: (_, index) => ProductsEntryCard(
                   product: snapshot.data![index],
                   onTap: () {
-                    // Navigate to news detail page
+                    // Navigate to product detail page
                     Navigator.push(
                       context,
                       MaterialPageRoute(

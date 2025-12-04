@@ -37,11 +37,22 @@ class MyApp extends StatelessWidget {
         //
         // This works for code too, not just values: Most code changes can be
         // tested with just a hot reload.
-         colorScheme: ColorScheme.fromSwatch(primarySwatch: Colors.pink)
-        .copyWith(secondary: const Color.fromARGB(255, 255, 176, 204)),
+         colorScheme: ColorScheme.fromSwatch(primarySwatch: pinkSwatch)
+        .copyWith(secondary: const Color.fromARGB(255, 255, 176, 221)),
       ),
       home: const LoginPage(),
     ),
     );
   }
 }
+
+MaterialColor pinkSwatch = const MaterialColor(
+  0xFFFF8ADC,
+  {
+    50: Color(0xFFFFE6F5),
+    100: Color(0xFFFFCCE9),
+    200: Color(0xFFFF99D3),
+    300: Color(0xFFFF66BE),
+    400: Color(0xFFFF33A8),
+  },
+);

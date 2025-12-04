@@ -5,7 +5,6 @@ Tugas 7
  1. Jelaskan apa itu widget tree pada Flutter dan bagaimana hubungan parent-child (induk-anak) bekerja antar widget.
 =>  Widget tree adalah struktur hierarki yang menunjukkan bagaimana widget-widget tersusun di dalam aplikasi Flutter. Setiap widget dapat memiliki satu atau lebih widget anak (child), dan semuanya diatur dalam bentuk pohon (tree). Hubungan parent-child berarti widget induk (parent) mengatur tata letak, ukuran, dan perilaku widget anak (child). Misalnya, Column adalah parent yang berisi beberapa child widget seperti Text dan Button. Jika parent dihapus atau diubah, maka semua child-nya juga akan terpengaruh.
 
-
 2. Sebutkan semua widget yang kamu gunakan dalam proyek ini dan jelaskan fungsinya.
 => Widget-widget yang digunakan dalam proyek Soccer Wave serta fungsinya adalah sebagai berikut:
 - MaterialApp → Widget utama aplikasi yang menyediakan tema, navigasi, dan pengaturan global.
