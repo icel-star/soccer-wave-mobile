@@ -15,23 +15,23 @@ Tugas 7
 - Column → Menyusun widget secara vertikal, seperti menampung baris InfoCard dan teks sambutan.
 - Row → Menyusun beberapa widget InfoCard secara horizontal.
 - InfoCard (custom widget) → Menampilkan informasi pengguna seperti NPM, Nama, dan Kelas dalam bentuk kartu.
-- Card → Digunakan di dalam InfoCard untuk membuat tampilan kotak dengan bayangan lembut.
+- Card → Digunakan di dalam InfoCard untuk membuat tampilan kotak.
 - Container → Mengatur ukuran, padding, dan tata letak isi dari kartu dan item grid.
 - Text → Menampilkan teks seperti judul, nama, dan label tombol.
-- SizedBox → Memberikan jarak antar elemen (misalnya jarak vertikal 16).
+- SizedBox → Memberikan jarak antar elemen.
 - Center → Menempatkan widget anak di tengah halaman.
 - GridView.count → Menampilkan daftar item (ItemCard) dalam bentuk grid 3 kolom.
 - ItemCard (custom widget) → Kartu berwarna yang menampilkan ikon dan teks dari setiap item menu.
-- Material → Membungkus setiap ItemCard agar mendukung efek Material Design seperti ripple.
-- InkWell → Memberikan efek sentuhan (klik) dan aksi onTap yang menampilkan SnackBar.
+- Material → Membungkus setiap ItemCard agar mendukung efek Material Design.
+- InkWell → Memberikan efek sentuhan (klik) dan aksi onTap.
 - Icon → Menampilkan ikon di dalam ItemCard.
 - SnackBar → Muncul sementara di bagian bawah layar untuk memberikan notifikasi ketika item ditekan.
 - MediaQuery → Mengambil ukuran layar agar InfoCard bisa menyesuaikan lebar perangkat.
 
 3. Apa fungsi dari widget MaterialApp? Jelaskan mengapa widget ini sering digunakan sebagai widget root.
 => MaterialApp berfungsi sebagai wadah utama aplikasi Flutter berbasis Material Design. Dalam proyek ini, MaterialApp digunakan untuk :
-- Menentukan judul aplikasi (title: 'Flutter Demo'),
-- Mengatur tema global melalui ThemeData, seperti warna utama (primarySwatch: Colors.pink) dan warna sekunder.
+- Menentukan judul aplikasi
+- Mengatur tema global melalui ThemeData, seperti warna utama dan warna sekunder.
 - Menentukan halaman awal (home), yaitu MyHomePage().
 Alasan mengapa widget ini sering dijadikan widget root adalah karena:
 - Menyediakan konteks Material Design agar widget seperti Scaffold, AppBar, dan SnackBar bisa berfungsi.
@@ -51,7 +51,7 @@ Gunakan StatefulWidget jika tampilan perlu diperbarui berdasarkan interaksi peng
 5. Apa itu BuildContext dan mengapa penting di Flutter? Bagaimana penggunaannya di metode build?
 => BuildContext adalah objek yang menunjukkan posisi sebuah widget di dalam struktur aplikasi atau widget tree. Objek ini penting karena memungkinkan widget untuk berkomunikasi dan mengambil informasi dari widget lain yang berada di atasnya (seperti tema, warna, atau Scaffold).
 Di dalam metode build, BuildContext digunakan agar widget bisa membangun tampilan yang sesuai dengan lingkungannya. Misalnya, widget dapat menyesuaikan warna berdasarkan tema aplikasi atau menampilkan pesan melalui Scaffold yang ada di atasnya.
-Singkatnya, BuildContext membantu Flutter memahami di mana sebuah widget berada dan bagaimana ia harus ditampilkan sesuai dengan hierarki aplikasinya.
+Jadi, BuildContext membantu Flutter memahami di mana sebuah widget berada dan bagaimana ia harus ditampilkan sesuai dengan hierarki aplikasinya.
 
 
 6. Jelaskan konsep "hot reload" di Flutter dan bagaimana bedanya dengan "hot restart".
@@ -61,34 +61,34 @@ Contoh: mengubah warna atau teks, lalu hasilnya langsung muncul.
 Contoh: jika mengubah variabel global atau inisialisasi awal, kita gunakan hot restart agar perubahan terdeteksi.
 => Perbedaan utama → Hot reload prosesnya cepat dan mempertahankan state, sedangkan hot restart lebih lambat dan mengulang dari awal aplikasi.
 
-TUGAS 2
+
+TUGAS 8
 
 1. Jelaskan perbedaan antara Navigator.push() dan Navigator.pushReplacement() pada Flutter. Dalam kasus apa sebaiknya masing-masing digunakan pada aplikasi Football Shop kamu?
-=> Navigator.push() digunakan untuk menambahkan halaman baru di atas halaman saat ini, sehingga ketika pengguna menekan tombol back, mereka akan kembali ke halaman sebelumnya. Ini seperti menambahkan lembaran baru di atas tumpukan yang sudah ada. Sedangkan Navigator.pushReplacement() menggantikan halaman saat ini dengan halaman baru, sehingga halaman sebelumnya dihapus dari tumpukan dan tidak bisa dikembalikan dengan tombol back.
+=> Navigator.push() digunakan untuk menambahkan halaman baru di atas halaman saat ini, sehingga ketika pengguna menekan tombol back, mereka akan kembali ke halaman sebelumnya. Ini seperti menambahkan stack baru di atas tumpukan yang sudah ada. Sedangkan Navigator.pushReplacement() menggantikan halaman saat ini dengan halaman baru, sehingga halaman sebelumnya dihapus dari tumpukan dan tidak bisa dikembalikan dengan tombol back.
 
-Dalam aplikasi Football Shop, saya akan menggunakan Navigator.push() untuk situasi seperti navigasi dari halaman beranda ke detail produk dimana pengguna perlu memiliki opsi untuk kembali ke halaman sebelumnya. Sementara Navigator.pushReplacement() akan saya terapkan setelah proses login berhasil, dimana halaman login digantikan dengan halaman beranda sehingga pengguna tidak bisa kembali ke halaman login dengan tombol back.
+Dalam aplikasi Soccer Wave, saya akan menggunakan Navigator.push() untuk situasi seperti navigasi dari halaman beranda ke detail produk dimana pengguna perlu memiliki opsi untuk kembali ke halaman sebelumnya. Sementara Navigator.pushReplacement() akan saya terapkan setelah proses login berhasil, dimana halaman login digantikan dengan halaman beranda sehingga pengguna tidak bisa kembali ke halaman login dengan tombol back.
 
 2. Bagaimana kamu memanfaatkan hierarchy widget seperti Scaffold, AppBar, dan Drawer untuk membangun struktur halaman yang konsisten di seluruh aplikasi?
-=> Saya memanfaatkan hierarchy widget seperti Scaffold, AppBar, dan Drawer dengan membuat template halaman yang konsisten di seluruh aplikasi Football Shop. Scaffold berfungsi sebagai kerangka dasar setiap halaman yang menyediakan visual yang seragam. AppBar saya gunakan untuk menampilkan judul halaman yang konsisten dengan warna tema toko. Drawer saya implementasikan sebagai menu navigasi utama yang berisi link ke berbagai section seperti beranda, create product, dll. sehingga pengguna dapat dengan mudah berpindah halaman dari mana saja dalam aplikasi. Dengan pendekatan ini, setiap halaman dalam aplikasi memiliki tampilan dan pola navigasi yang serupa.
+=> Saya memanfaatkan hierarchy widget seperti Scaffold, AppBar, dan Drawer dengan membuat template halaman yang konsisten di seluruh aplikasi Soccer Wave. Scaffold berfungsi sebagai kerangka dasar setiap halaman yang menyediakan visual yang seragam. AppBar saya gunakan untuk menampilkan judul halaman yang konsisten dengan warna tema toko. Drawer saya implementasikan sebagai menu navigasi utama yang berisi link ke berbagai section seperti home, create product, dll. sehingga pengguna dapat dengan mudah berpindah halaman dari mana saja dalam aplikasi. Dengan pendekatan ini, setiap halaman dalam aplikasi memiliki tampilan dan pola navigasi yang serupa.
 
 3. Dalam konteks desain antarmuka, apa kelebihan menggunakan layout widget seperti Padding, SingleChildScrollView, dan ListView saat menampilkan elemen-elemen form? Berikan contoh penggunaannya dari aplikasi kamu.
-=> Dalam menampilkan elemen-elemen form, penggunaan layout widget seperti Padding, SingleChildScrollView, dan ListView memberikan keuntungan signifikan. Padding membantu menciptakan ruang kosong yang cukup di sekitar elemen form. SingleChildScrollView sangat berguna ketika form memiliki banyak field yang tidak muat dalam satu layar, memungkinkan pengguna melakukan scroll. Sedangkan ListView ideal untuk menampilkan daftar field form.
+=> Dalam menampilkan elemen-elemen form, penggunaan layout widget seperti Padding, SingleChildScrollView, dan ListView memberikan keuntungan signifikan. Padding membantu menciptakan ruang kosong yang cukup di sekitar elemen form. SingleChildScrollView sangat berguna ketika form memiliki banyak field yang tidak muat dalam satu layar, memungkinkan pengguna melakukan scroll. Sedangkan ListView untuk menampilkan daftar field form.
 
-Dalam aplikasi Football Shop, ListView saya terapkan pada drawer. Saya menerapkan Padding pada setiap field form pembuatan produk. SingleChildScrollView saya gunakan pada halaman pembuatan produk juga.
+Dalam aplikasi Soccer Wave, ListView saya terapkan pada drawer. Saya menerapkan Padding pada setiap field form pembuatan produk. SingleChildScrollView saya gunakan pada halaman pembuatan produk juga.
 
 4. Bagaimana kamu menyesuaikan warna tema agar aplikasi Football Shop memiliki identitas visual yang konsisten dengan brand toko?
-=> Untuk menciptakan identitas visual yang konsisten dengan brand Football Shop, pertama, saya memilih warna utama yang merepresentasikan diri saya atau shop saya, yyaitu warna pink. Kemudian saya membuat palet warna yang terdiri dari warna primary, secondary,dll. untuk background dan text. Warna-warna ini saya terapkan secara konsisten di seluruh komponen aplikasi seperti drawer, button, card, dll.
+=> Untuk menciptakan identitas visual yang konsisten dengan brand Soccer Wave, pertama, saya memilih warna utama yang merepresentasikan diri saya atau shop saya, yaitu warna pink. Kemudian saya membuat palet warna yang terdiri dari warna primary dan secondary untuk background dan text. Warna-warna ini saya terapkan secara konsisten di seluruh komponen aplikasi seperti drawer, button, card, dll. Dengan menerapkan tema warna yang konsisten di seluruh aplikasi, saya mengharapkan dapat mudah dikenali oleh pelanggan Soccer Wave.
 
-Dengan menerapkan tema warna yang konsisten di seluruh aplikasi, saya mengharapkan dapat menciptakan pengalaman yang baik dan mudah dikenali oleh pelanggan Football Shop.
 
 Tugas 9
 1. Jelaskan mengapa kita perlu membuat model Dart saat mengambil/mengirim data JSON? Apa konsekuensinya jika langsung memetakan Map<String, dynamic> tanpa model (terkait validasi tipe, null-safety, maintainability)?
-=> Kita perlu membuat model Dart ketika mengambil atau mengirim data JSON karena model memberikan struktur yang jelas, keamanan tipe, dan memastikan data yang diterima atau dikirim sesuai dengan ekspektasi. Dengan model, setiap field memiliki tipe data yang pasti sehingga kesalahan seperti salah tipe, data hilang, atau data null dapat terdeteksi sejak compile-time, bukan baru saat aplikasi berjalan. Model juga memanfaatkan null-safety Dart—kita bisa menentukan mana field yang wajib ada dan mana yang boleh null—sehingga risiko error akibat nilai yang tidak ada menjadi jauh lebih kecil.
+=> Kita perlu membuat model Dart ketika mengambil atau mengirim data JSON karena model memberikan struktur yang jelas, keamanan tipe, dan memastikan data yang diterima atau dikirim sesuai dengan ekspektasi. Dengan model, setiap field memiliki tipe data yang pasti sehingga kesalahan seperti salah tipe, data hilang, atau data null dapat terdeteksi sejak compile-time, bukan baru saat aplikasi berjalan. Model juga memanfaatkan null-safety Dart di mana kita bisa menentukan mana field yang wajib ada dan mana yang boleh null sehingga risiko error akibat nilai yang tidak ada menjadi jauh lebih kecil.
 
-Jika kita langsung menggunakan Map<String, dynamic> tanpa model, kita kehilangan semua perlindungan ini. Tidak ada jaminan bahwa key di map benar, tidak ada pengecekan tipe, dan tidak ada otomatisasi null-safety. Akibatnya bug seperti salah nama key, field null yang tak terduga, atau tipe data yang tidak sesuai baru muncul sebagai error runtime, yang jauh lebih sulit dilacak. Selain itu, kode yang bergantung pada map mentah menjadi sulit dirawat, terutama ketika API backend berubah; kita harus mencari dan memperbaiki penggunaan key di banyak tempat secara manual. Sebaliknya, dengan model, semua perubahan cukup dilakukan pada satu titik, sehingga kode lebih rapi, konsisten, dan maintainable.
+Jika kita langsung menggunakan Map<String, dynamic> tanpa model, kita kehilangan semua perlindungan ini. Tidak ada jaminan bahwa key di map benar, tidak ada pengecekan tipe, dan tidak ada otomatisasi null-safety. Akibatnya bug seperti salah nama key, field null yang tak terduga, atau tipe data yang tidak sesuai baru muncul sebagai error runtime, yang jauh lebih sulit dilacak. Selain itu, kode yang bergantung pada map mentah menjadi sulit dirawat, terutama ketika API backend berubah. kita harus mencari dan memperbaiki penggunaan key di banyak tempat secara manual. Sebaliknya, dengan model, semua perubahan cukup dilakukan pada satu titik, sehingga kode lebih rapi, konsisten, dan maintainable.
 
 2. Apa fungsi package http dan CookieRequest dalam tugas ini? Jelaskan perbedaan peran http vs CookieRequest.
-=> Package http berfungsi sebagai alat dasar untuk melakukan request HTTP seperti GET dan POST tanpa menyimpan informasi sesi atau autentikasi. Dalam tugas ini, http biasanya dipakai untuk mengambil data JSON atau mengirim data ke endpoint yang tidak memerlukan login. 
+=> Package http berfungsi sebagai alat dasar untuk melakukan request HTTP seperti GET dan POST tanpa menyimpan informasi sesi atau autentikasi. Dalam tugas ini, http dipakai untuk mengambil data JSON atau mengirim data ke endpoint yang tidak memerlukan login. 
 
 CookieRequest digunakan untuk menangani proses autentikasi karena ia mampu menyimpan dan mengelola cookie sesi dari Django. Dengan menyimpan cookie tersebut, CookieRequest memungkinkan Flutter mempertahankan status login pengguna dan mengakses endpoint yang dilindungi, seperti fitur yang membutuhkan login_required. 
 
@@ -111,17 +111,17 @@ Jika semua konfigurasi ini tidak dilakukan dengan benar, berbagai masalah dapat 
 
 Lalu, Flutter melakukan permintaan GET ke endpoint JSON Django untuk mengambil data terbaru. Django merespons dengan mengirimkan JSON berisi data yang telah tersimpan di database. Flutter menerima JSON tersebut, lalu mengonversinya menjadi model Dart untuk memastikan keamanan tipe dan memudahkan pengolahan data. Model inilah yang kemudian digunakan untuk menampilkan data pada UI Flutter. 
 
-Jadi, secara garis besar, mekanisme nya adalah sebegai berikut: input → pengiriman data ke backend → penyimpanan dan pemrosesan di Django → pengambilan data kembali oleh Flutter → konversi ke model → tampilkan di UI Flutter.
+Jadi, mekanisme nya adalah sebegai berikut: input → pengiriman data ke backend → penyimpanan dan pemrosesan di Django → pengambilan data kembali oleh Flutter → konversi ke model → tampilkan di UI Flutter.
 
 6. Jelaskan mekanisme autentikasi dari login, register, hingga logout. Mulai dari input data akun pada Flutter ke Django hingga selesainya proses autentikasi oleh Django dan tampilnya menu pada Flutter.
 => - Login
-Proses login dimulai ketika pengguna memasukkan username dan password pada form Flutter. Setelah tombol login ditekan, Flutter mengirim data tersebut melalui instance CookieRequest ke endpoint login Django. Django kemudian memverifikasi kredensial menggunakan sistem autentikasinya, mengecek apakah username ada, apakah password valid, dan apakah akun aktif. Jika autentikasi berhasil, Django membuat session dan mengirimkan session cookie kembali ke Flutter. CookieRequest menyimpan cookie ini sehingga semua request berikutnya dianggap berasal dari pengguna yang sudah login. Setelah itu, Flutter membaca respons Django dan mengarahkan pengguna ke menu utama aplikasi. Jika gagal, Flutter hanya menampilkan pesan error tanpa menyimpan cookie.
+Proses login dimulai ketika pengguna memasukkan username dan password pada form Flutter. Setelah tombol login ditekan, Flutter mengirim data tersebut melalui instance CookieRequest ke endpoint login Django. Django kemudian memverifikasi kredensial menggunakan sistem autentikasinya, mengecek apakah username ada dan password valid. Jika autentikasi berhasil, Django membuat session dan mengirimkan session cookie kembali ke Flutter. CookieRequest menyimpan cookie ini sehingga semua request berikutnya dianggap berasal dari pengguna yang sudah login. Setelah itu, Flutter membaca respons Django dan mengarahkan pengguna ke menu utama aplikasi. Jika gagal, Flutter hanya menampilkan pesan error tanpa menyimpan cookie.
 
 - Register
-Pengguna memasukkan data seperti username, email, dan password di Flutter. Flutter mengirimkan data ke endpoint register Django menggunakan CookieRequest atau http tergantung implementasi. Django memvalidasi data, memastikan username unik, password memenuhi syarat, dan format email benar. Jika valid, Django membuat akun baru di database dan mengembalikan respons bahwa registrasi berhasil. Flutter kemudian menampilkan informasi tersebut kepada pengguna dan mengarahkan mereka ke halaman login. Pada proses register, Django tidak otomatis membuat session, sehingga pengguna tetap harus login setelah mendaftar.
+Pengguna memasukkan data seperti username dan password di Flutter. Flutter mengirimkan data ke endpoint register Django. Django memvalidasi data, memastikan username unik dan password memenuhi syarat. Jika valid, Django membuat akun baru di database dan mengembalikan respons bahwa registrasi berhasil. Flutter kemudian menampilkan informasi tersebut kepada pengguna dan mengarahkan mereka ke halaman login. Pada proses register, Django tidak otomatis membuat session, sehingga pengguna tetap harus login setelah mendaftar.
 
 - Logout
-Logout terjadi ketika Flutter mengirim request ke endpoint logout Django melalui CookieRequest. Django menghapus session di server dan mengembalikan respons bahwa pengguna telah berhasil logout. Setelah menerima ini, CookieRequest menghapus cookie session yang tersimpan di sisi Flutter, sehingga semua request selanjutnya tidak lagi membawa identitas pengguna. Flutter kemudian mengarahkan pengguna kembali ke halaman login atau landing screen.
+Logout terjadi ketika Flutter mengirim request ke endpoint logout Django melalui CookieRequest. Django menghapus session di server dan mengembalikan respons bahwa pengguna telah berhasil logout. Setelah menerima ini, CookieRequest menghapus cookie session yang tersimpan di sisi Flutter, sehingga semua request selanjutnya tidak lagi membawa identitas pengguna. Flutter kemudian mengarahkan pengguna kembali ke halaman login.
 
 7. Jelaskan bagaimana cara kamu mengimplementasikan checklist di atas secara step-by-step! (bukan hanya sekadar mengikuti tutorial).
 => - Deployment Django & Penyesuaian Backend
@@ -145,12 +145,12 @@ Logout terjadi ketika Flutter mengirim request ke endpoint logout Django melalui
   ~ Menyesuaikan URL dan struktur body request agar cocok dengan URL login dan register milik proyek Django saya.
   ~ Menambahkan logika pengecekan login agar halaman-halaman tertentu di Flutter hanya bisa dibuka oleh user yang telah login.
 
-- Membuat Model Dart Untuk Item (Disesuaikan Dengan Model Django)
+- Membuat Model Dart Untuk Item 
   ~ Melihat endpoint JSON item milik Django saya dan mencatat semua field yang ada.
   ~ Membuat class model Dart yang sesuai persis dengan bentuk JSON Django saya.
   ~ Model ini digunakan untuk parsing data ketika Flutter mengambil JSON dari Django.
 
 - Membuat Halaman Daftar Item
   ~ Membuat fungsi fetch data yang memanggil endpoint JSON Django.
-  ~ Setiap card menampilkan atribut penting yang sesuai dengan model Django.
+  ~ Setiap card menampilkan atribut yang sesuai dengan model Django.
   ~ Karena data berasal dari Django saya, saya memastikan mapping JSON → Dart model sudah sesuai.
